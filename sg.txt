@@ -1,0 +1,30 @@
+    static int acceptableChord(ArrayList<Note> chords, int i) {
+        Note current;
+        Note next;
+        if (i == 0) {
+            current = chords.get(i);
+            next = chords.get(i + 1);
+        } else {
+            current = chords.get(i);
+            next = chords.get(i - 1);
+        }
+        if (ChordInRange(current) == 0 && inDoMajor(current) && notRepeate(chords, current, i) && distLs12(current, next) == 0) {
+            if (i <= 8) {
+                if (growing(current, next)) {
+                    return 0;
+                } else {
+                    return -1;
+                }
+
+            } else {
+                if (falling(current, next)) {
+                    return 0;
+
+                } else {
+                    return -1;
+                }
+            }
+        } else {
+            return -1;
+        }
+    }
